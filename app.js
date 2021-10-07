@@ -12,8 +12,24 @@ yargs.version('1.1.0')
 yargs.command({
 	command : 'add',
 	describe: 'Add a new note',
-	handler: function(){
-		console.log("adding a new note")
+	builder:{
+		title:{
+			describe: 'Note title',
+			demandOption: true ,   //user must provide a title as arg
+			type:'string',
+
+		},
+		body:{
+			describe: 'body',
+			demandOption: true,
+			type: 'string'
+	}
+		},
+
+	handler: function(argv){
+		console.log('Title: ' + argv.title );
+		console.log('Body: ' + argv.body );
+
 	}
 })
 //create remove command
@@ -41,5 +57,5 @@ yargs.command({
 	}
 })
 
+yargs.parse(); //parsing the arguments
 
-console.log(yargs.argv);
